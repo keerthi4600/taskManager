@@ -1,0 +1,12 @@
+<div class="task-app">
+  <div class="card">
+    <header>
+      <h1>Task Management</h1>
+      <button class="add-task-button" (click)="toggleTaskForm()">Add Task</button>
+    </header>
+    <div class="task-content">
+      <app-task-list *ngIf="!showTaskForm" [tasks]="tasks"></app-task-list>
+      <app-task-form *ngIf="showTaskForm" (taskCreated)="addTask($event)"></app-task-form>
+    </div>
+  </div>
+</div>

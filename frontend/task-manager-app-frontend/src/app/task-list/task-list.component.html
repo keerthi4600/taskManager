@@ -1,0 +1,46 @@
+<div>
+  <!-- Status filter dropdown -->
+  <div class="custom-select-container">
+    <label for="statusFilter" class="filter-label">Filter by Status:</label>
+    <div class="custom-select">
+      <select id="statusFilter" name="statusFilter" class="status-filter" [(ngModel)]="selectedStatus" (change)="filterTasks()">
+        <option value="All">All Tasks</option>
+        <option value="To Do">To Do</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Done">Done</option>
+      </select>
+      <div class="select-arrow">
+        <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 6L0 0h10z" fill="#333"/>
+        </svg>
+      </div>
+    </div>
+  </div>  
+  <table class="task-table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of filteredTasks">
+        <td>{{ task.title }}</td>
+        <td>{{ task.description || 'No Description Available' }}</td>
+        <td>{{ task.status }}</td>
+        <td>
+          <button class="status-button" (click)="updateTaskStatus(task)" [disabled]="task.status === 'Done'">
+            {{ task.status === 'To Do' ? 'Start' : 'Complete' }}
+          </button>          
+          <button class="delete-button" (click)="deleteTask(task._id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>  
+
+  <div *ngIf="filteredTasks.length === 0">
+    <p>No tasks found.</p>
+  </div>
+</div>
