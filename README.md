@@ -98,4 +98,4 @@ This project is a simple task management application built using Angular for the
 
 ## Contact
 
-For any questions or feedback, please contact [Keerthi reddy](mailto:keerthi4600@gmail.com).
+For any questions or feedback, please contact Keerthi reddy at keerthi4600@gmail.com.
