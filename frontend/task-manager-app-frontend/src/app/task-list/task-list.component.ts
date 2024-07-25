@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Task } from '../task.model';
 import { TaskService } from '../task.service';
 
@@ -9,6 +9,7 @@ import { TaskService } from '../task.service';
 })
 export class TaskListComponent implements OnInit {
   @Input() tasks: Task[] = [];
+  @Output() taskDeleted: EventEmitter<string> = new EventEmitter<string>();
   filteredTasks: Task[] = [];
   selectedStatus: string = 'All';
 
@@ -51,6 +52,7 @@ export class TaskListComponent implements OnInit {
       this.taskService.deleteTask(taskId).subscribe(
         () => {
           this.filteredTasks = this.tasks = this.tasks.filter(task => task._id !== taskId);
+          this.taskDeleted.emit(taskId);
         },
         error => {
           console.error('Error deleting task:', error);

@@ -31,12 +31,11 @@ export class AppComponent {
   }
 
   addTask(newTask: any) {
-    const taskId = (this.tasks.length + 1).toString();
-
-    newTask._id = taskId;
-
     this.tasks.push(newTask);
-
     this.showTaskForm = false;
+  }
+
+  onTaskDeleted(taskId: string): void {
+    this.tasks = this.tasks.filter(task => task._id !== taskId);
   }
 }
